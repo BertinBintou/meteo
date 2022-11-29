@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>carte</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://kit.fontawesome.com/dacb8fb66f.js" crossorigin="anonymous"></script>
+  </head>
+  
+  <body>
+
+    <nav class="header">
+      Meteo
+    
+      
+      <a href="login" class="deconnection"> Déconnexion</a>
+    </nav>
+
+
+   <!--  container   -->
+
+      <div class="container">
+          
+        <div class="row">
+          <form action="/add-city" method="post">
+            <div class="col-12 offset-lg-6 col-lg-6 input-ville">
+              <div class="input-group mb-3">
+                <input  name="newcity" type="text" class="form-control" placeholder="Entrez le nom de votre ville" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Button</button>
+              </div>
+            </div>
+         </form>
+            <div class="col-12 col-lg-6 ">
+              <img  class="carte"  src="/images/carte.jpg" alt="carte"> 
+            </div>
+
+
+            <form action="/reset" method="get" class="reste">
+         
+            
+              <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Reset</button>
+            
+           </form>
+            
+            <div class="col-12  col-lg-6 liste-ville">
+              <ul class="list-group">
+                <% for( let i = 0; i<citylist.length; i++) {%>
+
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span class="name result"> <%= citylist[i].name %> </span>
+                    <span class="desc result "> <%= citylist[i].desc %> </span>
+                    <span class="badge result rounded-pill text-bg-warning"><%= citylist[i].temp_min %></span>
+                    <span class="badge  result bg-primary rounded-pill"><%= citylist[i].temp_max %></span>
+                    <span class="suppr  "><a href="/delet-city?id=<%=citylist[i].id%> "><i class="fa-solid fa-circle-xmark"></i></a></span> 
+                  </li>
+
+               <%}%>  
+              
+             
+              </ul>
+
+
+
+              <% if(citylist.length < 1) {%>
+                <h7 class="h7"> pas de ville trouvée  </h7>
+              <% } %> 
+            </div>
+
+
+
+        </div><!--  fin div row   --> 
+      
+      
+        </div><!--  fin div container   --> 
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+  </body>
+  </body>
+</html>
